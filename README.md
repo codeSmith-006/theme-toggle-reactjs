@@ -1,16 +1,110 @@
-# React + Vite
+# React + Tailwind Dark Mode System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A ready-to-use **Dark/Light mode system** built with **Vite + React + Tailwind CSS v4**.  
+No more repeating setup every time — clone it once, customize the toggle UI, and go!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## What It Does
 
-## React Compiler
+- Pre-configured **dark/light mode** logic with localStorage memory  
+- Automatic system theme detection (`auto` mode)  
+- Tailwind **class-based** dark mode (`dark:` prefix ready)  
+- Easily customizable UI — just change icons, buttons, or styles  
+- Monochrome gradient dark mode + creamy off-white light mode  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/codeSmith-006/theme-toggle-reactjs
+cd theme-toggle-reactjs
+npm install
+npm run dev
+```
+
+Then open `http://localhost:5173`
+
+That's it — everything (Vite, React, Tailwind, dark mode logic) is already configured.
+
+---
+
+## Folder Structure
+
+```
+src/
+├── components/
+│   ├── Navbar.jsx
+│   └── ThemeToggle.jsx
+├── hooks/
+│   └── useTheme.js
+├── Theme/
+│   └── ThemeProvider.jsx
+|   └── ThemeToggle.jsx
+├── App.jsx
+├── index.css
+└── main.jsx
+```
+
+---
+
+## How to Customize
+
+1. Edit `src/components/ThemeToggle.jsx`
+2. Replace the button or icon with your own design
+3. The theme logic will still work automatically
+
+**Example:**
+
+```jsx
+<button onClick={() => setTheme("dark")}>🌙 Dark</button>
+<button onClick={() => setTheme("light")}>☀️ Light</button>
+<button onClick={() => setTheme("auto")}>💻 Auto</button>
+```
+
+---
+
+## Theme Colors
+
+| Mode  | Background                          | Text      |
+|-------|-------------------------------------|-----------|
+| Light | `#fdfcf9` (creamy white)           | `#1a1a1a` |
+| Dark  | gradient `#0f0f0f` → `#1a1a1a`     | `#e5e5e5` |
+
+---
+
+## How It Works
+
+```
+User Interaction
+      ↓
+localStorage (persist choice)
+      ↓
+useTheme Hook (manage state)
+      ↓
+Theme State (dark/light/auto)
+      ↓
+Tailwind dark: classes
+      ↓
+Visual Theme Applied
+```
+
+**Flow breakdown:**
+1. **User selects theme** → Stored in `localStorage`
+2. **`useTheme` hook** → Reads preference & system theme
+3. **Theme state updates** → Applies `dark` class to `<html>`
+4. **Tailwind CSS** → Automatically styles with `dark:` variants
+5. **Persists across sessions** → Always remembers user choice
+
+---
+
+## Notes
+
+- No need for Docker or manual setup
+- Just Node.js + npm
+- Works out of the box with Tailwind's dark mode classes
+
+---
+
+**Made with using Vite, React, and Tailwind CSS v4**
